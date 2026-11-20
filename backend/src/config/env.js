@@ -10,6 +10,7 @@ module.exports = {
     user: process.env.DB_USER || 'root',
     password: process.env.DB_PASSWORD || '',
     database: process.env.DB_NAME || 'smart_house_rent',
+    ssl: process.env.DB_SSL === 'true' ? { rejectUnauthorized: false } : undefined,
     connectionLimit: 20,
     waitForConnections: true,
     queueLimit: 0,
