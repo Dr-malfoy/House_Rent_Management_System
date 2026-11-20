@@ -65,7 +65,7 @@ async function searchNearby({
     LEFT JOIN property_types pt ON h.property_type_id = pt.id
     LEFT JOIN users u ON h.landlord_id = u.id
     WHERE h.status = 'approved'
-      AND MBRContains(ST_GeomFromText(?, 4326), h.location)
+      AND MBRContains(ST_GeomFromText(?), h.location)
       AND ST_Distance_Sphere(h.location, POINT(?, ?)) <= ?
   `;
 

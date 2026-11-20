@@ -71,7 +71,7 @@ async function generateBenchmarkData(totalCount = 10000) {
         'Dhaka',
         '${area.name}',
         'Dhaka',
-        ST_GeomFromText('POINT(${lng} ${lat})', 4326),
+        ST_GeomFromText('POINT(${lng} ${lat})'),
         ${rent},
         ${deposit},
         ${beds},
@@ -118,7 +118,7 @@ async function generateBenchmarkData(totalCount = 10000) {
         ROUND(ST_Distance_Sphere(h.location, POINT(?, ?))) AS distance_m
       FROM houses h
       WHERE h.status = 'approved'
-        AND MBRContains(ST_GeomFromText(?, 4326), h.location)
+        AND MBRContains(ST_GeomFromText(?), h.location)
         AND ST_Distance_Sphere(h.location, POINT(?, ?)) <= ?
       ORDER BY distance_m ASC
     `;

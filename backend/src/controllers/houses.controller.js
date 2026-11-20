@@ -316,7 +316,7 @@ async function createHouse(req, res, next) {
         rules, availability_date, cover_image, is_featured, status
       ) VALUES (
         ?, ?, ?, ?, ?,
-        ?, ?, ?, ?, ST_GeomFromText(?, 4326),
+        ?, ?, ?, ?, ST_GeomFromText(?),
         ?, ?, ?, ?, ?, ?,
         ?, ?, ?, FALSE, ?
       )`,
@@ -446,7 +446,7 @@ async function updateHouse(req, res, next) {
     ];
 
     if (lat !== undefined && lng !== undefined) {
-      locationClause = ', location = ST_GeomFromText(?, 4326)';
+      locationClause = ', location = ST_GeomFromText(?)';
       params.push(`POINT(${parseFloat(lng)} ${parseFloat(lat)})`);
     }
 

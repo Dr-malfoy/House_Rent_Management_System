@@ -71,7 +71,7 @@ async function createBooking(req, res, next) {
         share_location, booker_lat, booker_lng, booker_location, status
       ) VALUES (
         ?, ?, ?, ?, ?,
-        ?, ?, ?, ${locationPoint ? 'ST_GeomFromText(?, 4326)' : 'NULL'}, 'pending'
+        ?, ?, ?, ${locationPoint ? 'ST_GeomFromText(?)' : 'NULL'}, 'pending'
       )`,
       locationPoint
         ? [house_id, req.user.id, members, move_in_date, message || null, share_location, lat, lng, locationPoint]
